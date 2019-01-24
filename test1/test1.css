@@ -1,0 +1,17 @@
+#maps{
+	width: 500px;
+
+}
+
+.padre {
+  background: yellow;
+  height: 500px;
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hijo {
+  width: 520px;
+}

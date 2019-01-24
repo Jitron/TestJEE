@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<meta charset="UTF-8">
+	<title>  test punto geolocalización </title>
+	<script type="text/javascript" src="test1.js"></script>
+	<link rel="stylesheet" type="text/css" href="test1.css">  
+
+	<!-- Bootstrap -->
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+     
+      
+</head>
+<body onload="getLocation();">
+	<h1></h1>
+
+
+<div class="padre">
+  <div class="hijo">
+	<div class="form-group" class="form-control form-control-lg>
+		<label for="direccion"> Escriba los puntos que desea a localizar ?</label>
+		<br>
+		<label  style="color:blue;width:70px">longitud</label>
+		<input type="number" min="0" step="1 placeholder="longitud" id = "longitud">
+		<br>
+		<label style="color:blue;width:70px" >latitud</label>
+		<input type="number" min="0" step="1 placeholder="latitud" id = "latitud">
+		<br>
+		<button id="localizate" onclick="viewMap();" style="width:278px">search</button>
+		</div>
+
+	<iframe id="map" width="400" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBTPNAn9hvpteLcYxmLymCjqE9j0tAK2gI
+    &q=Space+Needle,Seattle+WA" allowfullscreen>
+  </div>
+</div>
+
+
+   
+</body>
+</html>
