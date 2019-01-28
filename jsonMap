@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info Windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="map"></div>
+
+
+    <script>
+
+    	var positionJSON =[
+    		{
+              "latitude": -0.225219,
+              "longitude": -78.5248,
+              "title" : 'shopper 1',
+              "typeShopper" : 'Internal'
+            },
+            {
+              "latitude": -0.215219,
+              "longitude": -77.5248,
+              "title" : 'shopper 2',
+              "typeShopper" : 'Beginer'
+            },
+            {
+              "latitude": -0.225219,
+              "longitude": -79.5248,
+              "title" : 'shopper 3',
+              "typeShopper" : 'External'
+            }];
+
+        window.onload = function () 
+        {
+        	loadMap();
+    	}
+    	
+    	function loadMap() 
+    	{
+    		var mapOptions = 
+    		{
+    			center: new google.maps.LatLng(positionJSON[0].latitude, positionJSON[0].longitude),
+    			zoom: 10,
+    			mapTypeId: google.maps.MapTypeId.ROADMAP
+        	};
+        	
+        	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+ 
+        	//Create and open InfoWindow.
+        	var infoWindow = new google.maps.InfoWindow();
+        	var iconType;
+ 
+        	for (var i = 0; i < positionJSON.length; i++) 
+        	{
+            	var data = positionJSON[i];
+            	var myLatlng = new google.maps.LatLng(data.latitude, data.longitude);
+
+            	var typeS = data.typeShopper;
+            	console.log(typeS);
+
+            	if(typeS == 'Beginer'){
+            		iconType = 'images/marker.png';
+            	}if(typeS == 'Internal'){
+            		iconType = 'images/marker1.png';
+            	}if(typeS == 'External'){
+            		iconType = 'images/marker2.png';
+            	}
+
+            	//create icon
+        		var icon = {
+        			url: iconType,//url icon
+        			scaledSize: new google.maps.Size(50, 50), // scaled size icon
+        			origin: new google.maps.Point(0,0), // origin
+    				anchor: new google.maps.Point(0, 0) // anchor
+				};
+
+            	
+            	var marker = new google.maps.Marker(
+            	{
+            		position: myLatlng,
+            		map: map,
+            		title: data.title,
+            		icon: icon
+            	});
+ 
+            //Attach click event to the marker.
+            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+            (function (marker, data) 
+            {
+                google.maps.event.addListener(marker, "click", function (e) 
+                {
+                    infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.title + "</div>");
+                    infoWindow.open(map, marker);
+                });
+            })(marker, data);
+        }
+    }
+        
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTPNAn9hvpteLcYxmLymCjqE9j0tAK2gI&callback=initMap">
+    </script>
+  
+  </body>
+</html>
