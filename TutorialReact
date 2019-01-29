@@ -1,0 +1,564 @@
+conts h1 = <h1> soy una constate con un h1</h1>; 
+/* codigo jsx debe compilarse y luego ver se en el navegador
+busacar un archivo js instanciarlo de html
+puede al macenar se en una variable pasar a una funcion 
+almacenar en un objeto o matriz, etc..
+- los elementos jsx tienen atributos al igual que los html
+- anidar elementos se puede pasar a funciones, etc.
+- para elementos externos jsx de estar entre un etiqueta div
+
+
+*/
+<p>Hellow, word</p>
+
+const myArticle = <article>this a article</article>
+
+const p1 = <p id="atributo1">variable jsx con atributo</p>
+
+const concatenar = 
+(
+    <div id="div1">
+        <h1>hola</h1>
+    </div>
+);
+/* Escribir elementos jsx
+ */
+
+ import React from 'react';//libreria de js para tratar el DOM de alguna forma
+ import ReactDOM from 'react-dom';//
+
+//render metodo para crear codigo jsx y adjuntar al DOM
+/* solo actualiza los elementos que han cambiado */
+ ReactDOM.render(<h1>hola mundo</h1>),document.getElementById('add');//selector por id
+
+
+
+ const myList=(<ul><li>un elemento</li></ul>);
+
+ ReactDOM.render(myList, document.getElementById('app'));
+
+ const myDiv = <div className="bib">La palabra reservada class no se utiliza </div>
+
+//para operciones utiliza {} como inyecion de javascript
+ReactDOM.render(<h1>{2+3},documento.getElementById('app')</h1>);
+
+
+const inject =<h1>2+3={2+3}</h1> 
+ReactDOM.render(inject,document.getElementById('app'));
+
+//{}forma parte del js y pasa hacer un variable
+const txt="hola, hola";
+ReactDOM.render(<h1>{txt}</h1>,docuemnt.getElementById('app'));
+
+// las variable de injecion tienen atributos al igual que los objetos
+
+const obj=(
+    url1: "https://www.url1.com",
+    url2: "https://www.url2.com"
+);
+
+const url = 'https://www.sos.com';
+
+const imgen = <img src={url}/>
+
+//se puede utilizar inyecar funciones 
+function myFunction(){
+    alert(hola);
+}
+
+const var=<img  onClick ="myFunction()" src={url} alt="imagen"/>
+
+if(){
+
+}else{
+
+}
+
+//operador terminario
+const headline = <h1>{age >= drinkingAge ? 'permitir comprar' : 'no perimtir compra'}</h1>;
+x?y:z
+
+const pic ={
+    kitty: 'https://www.perro.com',
+    doggy: 'https://www.gato.com'    
+}
+
+const img = <img src={pic.[conti() === 'head' ? 'si es igual hacer algo':'no es igual hacer algo']}/>
+
+// operador &&
+const condicion = Math.ramdom() < 0.5;
+const lista = (
+    <ul>
+        <li>shushi burrito</li>
+        <li>no shushi burrito</li>
+        {<!condicion && <li> solo shushi</li>}
+    </ul>)
+ 
+ //areglos
+ const arrayString = ['a1','a2','a3'];
+ // key palabra reservada similar al id
+ const items = arrayString.map((string,i) => <li key={'valor_'+i}>{string}</li>);
+ 
+ReactDOM.render(<ul>{items}</ul>, document.getElementById('app'));
+
+//crear elemento JSX
+const div1 = React.createElement('div', null,'soy un div');
+// compilar un componente react
+
+//crea un variable e importa la libreria react
+// para usar los metodos de esta libreria importa objetos js
+import React from 'react';
+//crear componentes jsx para trabajar con DOM
+import ReactDOM from 'react-dom';
+// subclase qeu crear componentes jsx 'fabrica de componentes'
+class MiComponente extends React.Component{
+    render(){
+        return <h1>hola soy un componente jsx</h1>;
+    }
+}
+
+ReactDOM.render(<MiComponente />,document.getElementById('app'));
+
+//returno mutilinea JSX
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class MiComponte extends React.Component{
+    render(){
+        return (
+            <blockquote>
+                <h1>hola</h1>
+                <p>hola este es un componente de texto multilinea</p>
+                <cite>
+                    <a href='httpd://www.ruta.com'>ruta</a>
+                </cite>
+            </blockquote>
+        );
+    }
+}
+
+/*OBJETO CON PROPIEDADES Y ACCEDER A ELLAS
+*/
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const obj = {
+    title: 'Soy la propiedad de titulo',
+    src: 'https://www.imgenurl.com',
+    alt: 'imagen',
+    width: '100px' 
+}
+
+class MiComponente extends React.Component{
+    render(){
+        return (
+            <div width={obj.width}>
+                <h1>{obj.title}</h1>
+                <img src={obj.src} alt={obj.alt}/>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<MiComponente />, document.getElementById('app'));
+
+/*AREGLO DE OBJETOS CON PROPIEDADES Y ACCERDER A ELLAS*/
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const arrayObj = [{
+    title: 'soy el objeto 1 en el arreglo',
+    src: 'https://www.imgenurl.com',
+    alt: 'imagen',
+    width: '100px' 
+},
+{
+    title: 'Soy el objeto 2 en el arreglo',
+    src: 'https://www.imgenurl.com',
+    alt: 'imagen',
+    width: '100px' 
+},
+{
+    title: 'Soy el objeto 3 en el arreglo',
+    src: 'https://www.imgenurl.com',
+    alt: 'imagen',
+    width: '100px' 
+}]
+
+class MiComponente extends React.Component{
+    render(){
+        const propiedad = arrayObj[1];
+        return (
+            <div width={propiedad.width}>
+                <h1>{propiedad.title}</h1>
+                <img src={propiedad.src} alt={propiedad.alt}/>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<MiComponente />, document.getElementById('app'));
+
+/* let es similar a var  pero guarda el ultimo estado y es un variable de bloque
+ */
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const operacion = Math.ramdom < 0.5;
+class MiComponente extends React.Component{
+    render(){
+        let txt;
+        if (operacion){
+            txt='si' // <h1>Es una operacion si</h1>;
+        }else{
+            txt='no' //return <h1>Es una operacion no</h1>;
+        }
+        return <h1>Es una operacion {txt}</h1>;
+    }
+}
+
+ReactDOM.render(<MiComponente />, document.getElementById('app'));
+
+
+/*METODO GET EN REACT
+*/
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+class MiComponente extends React.Component{
+
+    get nombre(){
+        return 'Jonathan';
+    }
+
+    render(){
+        return <h1>Mi nombre es {this.nombre}.</h1>;
+    }
+}
+
+ReactDOM.render(<MiComponente />, document.getElementById('app'));
+
+
+/* eventos */
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+class MiComponente extends React.Component{
+
+    tocar(){
+        alert('AAAAAAAAAAAAAAAAH!');
+    }
+
+    render(){
+        return <button onClick={this.tocar}>AAAAAH!</button>;
+    }
+}
+
+ReactDOM.render(<MiComponente />, document.getElementById('app'));
+
+// retornar componentes
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {NavBar} from './NavBar';//importar archivo js locales junto export NavBar
+
+
+class Pagina extends React.Component{
+    render(){
+        return (//1 er componente
+        <div>
+            <NavBar />
+            <h1>Todo acerca de mi</h1>
+            <p>Soy un chico que se siente atraido por la programacion React</p>
+            <img src='www.comino.com'/>
+        </div>);
+    }
+}
+
+ReactDOM.render(<Pagina />, document.getElementById('app'));
+
+import React from 'react';
+
+export class NavBar extends React.Component(){//exportar este componente JSX
+    render(){//2 comoponente
+        const link = ['inicio','blog','fotos','biografia'];
+        const navLink = link.map(link => {
+            return (
+                <a href={'/'+link}>
+                    {link}
+                </a>
+            )
+        });
+        return <nav>{navLink}</nav>;// 3 componente
+    }
+}
+
+
+
+/*PASAR informacion ENTRE COMPONENETES*/// prop (cada componenete tiene )
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {NavBar} from './NavBar';//importar archivo js locales junto export NavBar
+
+
+class Pagina extends React.Component{
+    render(){
+        const informacion= JSON.stringify(this.props);
+        return (
+        <div>
+            <NavBar />
+            <h1>Todo acerca de mi, {informacion}</h1>
+            <p>Soy un chico que se siente atraido por la programacion React</p>
+            <img src='www.comino.com'/>
+        </div>);
+    }
+}
+// <Pagina dato='hola' />, <Pagina mensaje='hola sou yn mensaje' />, <Pagina arreglo={['hola','chao','adios']} />,
+ReactDOM.render(<Pagina dato='hola' />, document.getElementById('app'));//dato se pasa al componente informacion
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Pagina extends React.Component{
+    render(){
+        return (<h1>Todo acerca de mi, {this.props.dato}</h1>);
+    }
+}
+
+ReactDOM.render(<Pagina dato='Bienvenido' />, document.getElementById('app'));//dato se pasa al componente informacion
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {OtroComponente} from './OtroComponente';//pasar dato a otro componente
+
+
+class Pagina extends React.Component{
+    render(){
+        return (
+        <div>
+            <OtroComponente name='Jonathan'/>
+            <h1>Todo acerca de mi</h1>
+            <p>Soy un chico que se siente atraido por la programacion React</p>
+            <img src='www.comino.com'/>
+        </div>);
+    }
+}
+
+ReactDOM.render(<Pagina />, document.getElementById('app'));
+
+import React from 'react';
+
+export class OtroComponente extends React.Component(){//1 er componente
+    render(){
+        return  <h1> Mi nombre {this.props.name}</h1>
+    }
+}
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {OtroComponente} from './OtroComponente';//pasar dato a otro componente
+
+
+class Pagina extends React.Component{
+    render(){
+        return (
+        <div>
+            <OtroComponente name='Jonathan' entrar={true}/>
+            <h1>Todo acerca de mi</h1>
+            <p>Soy un chico que se siente atraido por la programacion React</p>
+            <img src='www.comino.com'/>
+        </div>);
+    }
+}
+
+ReactDOM.render(<Pagina />, document.getElementById('app'));
+
+import React from 'react';
+
+export class OtroComponente extends React.Component(){//1 er componente
+    render(){
+        if(this.props.entrar == false){
+            return  <h1> INTENTA NUEVAMENTE</h1>;
+        }else{
+            return  <h1> Mi nombre {this.props.name}</h1>;
+        }
+    }
+}
+
+/*CONTROLADOR DE EVENTOS Y METODOO CONTROLADOR*/ 
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Boton} from './Boton';//pasar dato a otro componente
+
+class Pagina extends React.Component{
+
+    tocar(){
+        let habla= '';
+        for(let i=0; i<1000;i++){
+            habla += 'blabla';
+        }
+        alert(habla);
+    }
+
+    render(){
+        return (
+        <Boton tocar={this.tocar} />);
+    }
+}
+
+ReactDOM.render(<Pagina />, document.getElementById('app'));
+
+import React from 'react';
+
+export class Boton extends React.Component(){//1 er componente
+    render(){
+        return <button onClick= {this.props.tocar}> ok </button>
+    }
+}
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Boton} from './Boton';//pasar dato a otro componente
+
+class Pagina extends React.Component{
+
+    tocar(){
+        let habla= '';
+        for(let i=0; i<1000;i++){
+            habla += 'blabla';
+        }
+        alert(habla);
+    }
+
+    render(){
+        return (
+        <Boton onCLick={this.tocar} />);
+    }
+}
+
+ReactDOM.render(<Pagina />, document.getElementById('app'));
+
+import React from 'react';
+
+export class Boton extends React.Component(){//1 er componente
+    render(){
+        return <button onClick= {this.props.onClick}> ok </button>
+    }
+}
+
+this.props.childre
+Boton.defaulProps
+
+
+/* state estado del componente
+*/
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Pagina extends React.Component{
+
+    constructor(){
+        super(props);
+        this.state = {title: 'soy un titulo'};
+    }
+
+    render(){
+        return (
+        <h1>
+            Wow yo this de pagina.
+        </h1>);
+    }
+}
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Pagina extends React.Component{
+
+    constructor(){
+        super(props);
+        this.state = {title: 'soy un titulo'};
+    }
+
+    render(){
+        return (
+        <h1>
+            Wow yo {this.state.title} de pagina.
+        </h1>);
+    }
+}
+
+ReactDOM.render(<App />,document.getElementById('app'));
+
+
+//cambiar estado de un objeto
+
+import React from 'react';
+
+class Pagina extends React.Component{
+
+    constructor(){
+        super(props);
+        this.state = {
+            title: 'soy un titulo',
+            estado: false
+        };
+    }
+
+    render(){
+        return <h1></h1>;
+    }
+}
+
+this.State({ estado:true});
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const green = '#39D1B4';
+const yellow = '#FFD712';
+
+class Tablero extends React.Component{
+    constructor(){
+        super(props);//siempre debe ir 
+        this.state = {color:green};//color el estado por defaul
+        this.cambiarCOlor = this.changeColor.bind(this);
+    }
+
+    changeColor(){
+        const newColor = this.state.color == green ? yellow:green;
+        this.setState({color:newColor});// accion cambiar color si cumple con la condicion
+    }
+    
+    render(){
+        return (//cambiar el style color de fondo cuando da click llama al funcion changeColor esta se la encargade cambiar de estado y vueleve a llamar al render
+            <div style={{background: this.state.color}}> 
+                <h1>Cambiar el color de fondo</h1>
+                <button onClick = {this.changeColor}>cambiar</button>
+            </div>
+        );
+    }
+}
+
+ // para etiquetas sin cierre se debe colocar el la barra (/)
+ const profile = (
+    <div>
+        <h1>HOLA</h1>
+        <img src="imagen/test.css"/>
+        <article>
+            articulo
+            <br/>
+            una linea
+            <br>
+        </article>
+    </div>
+ );
+
