@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info Windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="map"></div>
+
+
+    <script>
+
+    	var positionJSON =[
+    		{
+    			"key" : 1,
+              "lat": -0.225219,
+              "lng": -78.5248,
+              "name" : 'Juan Pérez',
+              "typeShopper" : 'Internal',
+              "order" : [
+              		{'code':'1111','hora' : '13:30'},
+              		{'code':'1112','hora' : '14:30'},
+              		{'code':'1113','hora' : '19:30'},
+              		{'code':'1114','hora' : '18:30'}
+              	],
+              "client" : [
+              		{'code':'9991','nombre' : 'Maria Salas'},
+              		{'code':'9992','nombre' : 'Ana Soliz'}
+              	]
+            },
+            {
+            	"key" : 2,
+              "lat": -0.215219,
+              "lng": -77.5248,
+              "name" : 'Martha Defaz',
+              "typeShopper" : 'Beginer',
+              "order" : [{'code':'2221','hora' : '9:30'},{'code':'2222','hora' : '10:30'}],
+              "client" : [{'code':'8881','nombre' : 'Mario Velez'},{'code':'8882','nombre' : 'Andres Suares'}]
+            },
+            {
+            	"key" : 3,
+              "lat": -0.225219,
+              "lng": -79.5248,
+              "name" : 'shopper 3',
+              "typeShopper" : 'External',
+              "order" : undefined,
+              "client" : [{'code':'7771','nombre' : 'Martha Velez'},{'code':'7772','nombre' : 'Andrian Sanchez'}]
+            }
+            ];
+
+        window.onload = function () 
+        {
+        	loadMap();
+    	}
+    	
+    	function loadMap() 
+    	{
+    		var mapOptions = 
+    		{
+    			center: new google.maps.LatLng(positionJSON[0].latitude, positionJSON[0].longitude),
+    			zoom: 10,
+    			mapTypeId: google.maps.MapTypeId.ROADMAP
+        	};
+        	
+        	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+ 
+        	//Create and open InfoWindow.
+        	var infoWindow = new google.maps.InfoWindow();
+        	var iconType;
+        	
+ 
+        	for (var i = 0; i < positionJSON.length; i++) 
+        	{
+            	var data = positionJSON[i];
+            	var myLatlng = new google.maps.LatLng(data.latitude, data.longitude);
+
+            	var typeS = data.typeShopper;
+            	console.log(typeS);
+            	var orders = data.order;
+            	var sizeOrder = orders.length;
+            	console.log("OrderSize : "+sizeOrder);
+
+            	if(typeS == 'Beginer'){
+            		iconType = 'images/marker.png';
+            	}if(typeS == 'Internal'){
+            		iconType = 'images/marker1.png';
+            	}if(typeS == 'External'){
+            		iconType = 'images/marker2.png';
+            	}
+
+            	//create icon
+        		var icon = {
+        			url: iconType,//url icon
+        			scaledSize: new google.maps.Size(50, 50), // scaled size icon
+        			origin: new google.maps.Point(0,0), // origin
+    				anchor: new google.maps.Point(0, 0) // anchor
+				};
+
+            	var marker = new google.maps.Marker(
+            	{
+            		position: myLatlng,
+            		map: map,
+            		title: data.title,
+            		icon: icon
+            	});
+ 
+            		//Load Marker while exist orders
+            		if(typeof orders !== 'undefined' && sizeOrder > 0)
+            		{	
+            			console.log('yeah');
+            			var rowTable = sizeOrder;
+            			var colTable = 5;
+            			//Attach click event to the marker.
+            			//Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+            			(function (marker, data) 
+            			{
+                			google.maps.event.addListener(marker, "click", function (e) 
+                			{
+                    			infoWindow.setContent("<div style = 'width:200px;min-height:40px'> Shopper:<h3>"+ data.title + " N°: "+ sizeOrder +"<h3></div>");
+                    			infoWindow.open(map, marker);
+                			});
+            			})(marker, data);
+            		}
+            		else
+            		{
+            			console-log('NothingOrders');
+            		}
+            
+        }//end for Shopper
+    }
+        
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTPNAn9hvpteLcYxmLymCjqE9j0tAK2gI&callback=initMap">
+    </script>
+  
+  </body>
+</html>
